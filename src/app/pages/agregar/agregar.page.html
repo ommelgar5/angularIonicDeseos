@@ -1,0 +1,64 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="dark">
+
+    <ion-buttons slot="start">
+      <!-- 
+        defaultHref="/tabs/tab1"
+        Especificar una ruta por defecto cuando ionic no detecta una 
+        previa navegacion
+
+        "/" es lo mismo que poner "/tabs/tab1" 
+
+       -->
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{ lista.titulo }}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  
+  <ion-list>
+    <ion-item color="dark">
+      <ion-label position="floating">Nuevo item</ion-label>
+      <ion-input  type="text" 
+                  [(ngModel)]="nombreItem"
+                  (keyup.enter)="agregarItem()"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+
+    <ion-list-header color="dark" *ngIf="lista.items.length > 0 ">
+      <ion-label>Tareas por hacer</ion-label>
+    </ion-list-header>
+  
+    <!-- 
+      (ionChange)=""
+      Se ejecuta cada vez que hay un cambio en el elemento
+
+      slot="icon-only"
+        para ajustar el icono a todo el contenido
+     -->
+     <ion-item-sliding *ngFor="let item of lista.items; let indice = index" class="animated fadeInDown">
+
+       <ion-item color="dark">
+         <ion-checkbox slot="start" color="tertiary"
+                       [(ngModel)]="item.completado"
+                       (ionChange)="cambioCheck( item )"></ion-checkbox>
+         <ion-label>{{ item.desc }}</ion-label>
+       </ion-item>
+
+       <ion-item-options side="end">
+        <ion-item-option (click)="borrar(indice)" color="danger">
+          <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+       
+     </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

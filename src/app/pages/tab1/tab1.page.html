@@ -1,0 +1,42 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar color="dark">
+    <ion-title>
+      Pendientes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="dark">
+
+  <app-listas [terminada]="false"></app-listas>
+
+
+  <!-- 
+    detail 
+      Muestra una flecha a la derecha del item, pora indicar 
+      que hay mas informacion
+      detail=false -> ocultarlo
+      detail=true -> valor por defecto
+
+    ion-note
+      Colocar un pequeño texto al final como badges en bootstrap
+   -->
+
+   <!-- AGREGADO A UN COMPONENTE -->
+ <!--  <ion-list color="dark">
+    <ion-item *ngFor="let lista of deseosService.listas" 
+              detail 
+              color="dark"
+              (click)="listaSelecionada(lista)">
+      <ion-label>{{ lista.titulo }}</ion-label>
+      <ion-note slot="end"color="tertiary">{{ lista.items.length }} items</ion-note>
+    </ion-item>
+  </ion-list> -->
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="agregarLista()" color="tertiary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
